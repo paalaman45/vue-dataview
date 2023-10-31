@@ -26,3 +26,6 @@ body {
 .descending:after {
     content: "\25bc";
 }
+.page-item{
+    cursor: pointer;
+}

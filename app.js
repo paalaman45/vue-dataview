@@ -198,7 +198,14 @@ new Vue({
 
       perPage: 10,
 
-      currentPage: 1
+      currentPage: 1,
+
+      product: {
+         id: null,
+         name: '',
+         category: '',
+         price: ''
+      }
    },
 
    computed: {
@@ -239,10 +246,42 @@ new Vue({
 
       keywordsIsInvalid () {
          return this.filters.keywords.length < 3;
-      }
+      },
+
+      isFirstPage (){
+         return this.currentPage === 1;
+      },
+
+      isLastPage (){
+         return this.currentPage >= this.pages;
+      },
+
+      pages () {
+         console.log("Max Page: " + Math.ceil(this.productsFiltered.length / this.perPage));
+         return Math.ceil(this.productsFiltered.length / this.perPage);
+      },
    },
 
    methods: {
+      save () {
+         if(this.product.name && this.product.category && this.product.price){
+            
+         }
+      },
+      switchPage (page){
+         this.currentPage = page;
+      },
+      prev () {
+         if(!this.isFirstPage){
+            this.currentPage--;
+         }
+      },
+      next () {
+         if(!this.isLastPage){
+            this.currentPage++;
+            console.log("Next: max");
+         }
+      },
       classes (column) {
          return [
             'sort-control',
