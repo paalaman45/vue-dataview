@@ -265,7 +265,20 @@ new Vue({
    methods: {
       save () {
          if(this.product.name && this.product.category && this.product.price){
-            
+            this.product.id = this.products.length + 1
+
+            this.products.unshift(this.product)
+
+            this.product = {
+               id: null,
+               name: '',
+               category: '',
+               price: '',
+            }
+
+            $(this.$refs.vuemodal).modal('hide');
+         }else{
+            alert("Please fill in the form properly");
          }
       },
       switchPage (page){
